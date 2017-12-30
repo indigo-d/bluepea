@@ -9,9 +9,9 @@ house main
       print Starting Anoner
       bid start anoner
 
-  init main.server.test to False
+  init main.server.test to True 
   init main.server.preload to True
-  init main.server.fakeHidKind to False
+  init main.server.fakeHidKind to True
 
   framer server be inactive via .main.server
     frame server
