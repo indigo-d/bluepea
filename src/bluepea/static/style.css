@@ -15,12 +15,14 @@
     and it's not scaled when table is resized */
     flex: 0 0 auto;
     width: calc(100% - 0.7em);
+    height: 44px;
 }
 .table-container table tbody {
     /* body takes all the remaining available space */
     flex: 1 1 auto;
     display: block;
     overflow-y: scroll;
+    height: calc(100% - 44px);
 }
 .table-container table tbody tr {
     width: 100%;
