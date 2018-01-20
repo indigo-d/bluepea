@@ -19,7 +19,7 @@ class Tab:
         self._menu_attrs = {"data-tab": self.Data_tab}
         self._tab_attrs = {"data-tab": self.Data_tab}
         self._menu = "a.item"
-        self._tab = "div.ui.bottom.attached.tab.segment"
+        self._tab = "div.ui.bottom.attached.tab.segment.no-border.below-tabs"
 
         if self.Active:
             self._menu += ".active"
@@ -83,33 +83,34 @@ class TabledTab(Tab):
                  )
 
     def main_view(self):
-        return m("div",
+        return m("div.fill-container.small-padding",
                  # Table needs to be in a special container to handle scrolling/sticky table header
                  m("div.table-container", m(self.table.view)),
-                 m("div.ui.hidden.divider"),
-                 m("div.ui.two.cards", {"style": "height: 45%;"},
-                   m("div.ui.card",
-                     m("div.content.small-header",
-                       m("div.header",
-                         m("span", "Details"),
-                         m("span.ui.mini.right.floated.button", {"onclick": self._copyDetails, "id": self._copyButtonId},
-                           "Copy")
+                 m("div.card-container",
+                   m("div.ui.two.cards.fill-container",
+                     m("div.ui.card",
+                       m("div.content.small-header",
+                         m("div.header",
+                           m("span", "Details"),
+                           m("span.ui.mini.right.floated.button", {"onclick": self._copyDetails, "id": self._copyButtonId},
+                             "Copy")
+                           )
+                         ),
+                       m("pre.content.code-block", {"id": self._detailsId},
+                         self.table.detailSelected
                          )
                        ),
-                     m("pre.content.code-block", {"id": self._detailsId},
-                       self.table.detailSelected
-                       )
-                     ),
-                   m("div.ui.card",
-                     m("div.content.small-header",
-                       m("div.header",
-                         m("span", "Copied"),
-                         m("span.ui.mini.right.floated.button", {"onclick": self._clearCopy, "id": self._clearButtonId},
-                           "Clear")
+                     m("div.ui.card",
+                       m("div.content.small-header",
+                         m("div.header",
+                           m("span", "Copied"),
+                           m("span.ui.mini.right.floated.button", {"onclick": self._clearCopy, "id": self._clearButtonId},
+                             "Clear")
+                           )
+                         ),
+                       m("pre.content.code-block", {"id": self._copiedId},
+                         self.copiedDetails
                          )
-                       ),
-                     m("pre.content.code-block", {"id": self._copiedId},
-                       self.copiedDetails
                        )
                      )
                    )
@@ -743,6 +744,7 @@ class Tabs:
 
         for tab in self.tabs:
             tab.table.setFilter(self.searcher.search)
+        return False # Don't reload page on form submission
 
     def searchCurrent(self):
         """
@@ -780,7 +782,7 @@ class Tabs:
                           m("i.refresh.icon")
                           )
 
-        return m("div",
+        return m("div", {"style": "height: 100%;"},
                  m("form", {"onsubmit": self.searchAll},
                    m("div.ui.borderless.menu",
                      m("div.right.menu", {"style": "padding-right: 40%"},

@@ -1,5 +1,5 @@
 "use strict";
-// Transcrypt'ed from Python, 2017-10-24 15:21:33
+// Transcrypt'ed from Python, 2018-01-17 12:06:29
 function main () {
    var __symbols__ = ['__py3.6__', '__esv5__'];
     var __all__ = {};
@@ -2427,7 +2427,7 @@ function main () {
 							self._menu_attrs = dict ({'data-tab': self.Data_tab});
 							self._tab_attrs = dict ({'data-tab': self.Data_tab});
 							self._menu = 'a.item';
-							self._tab = 'div.ui.bottom.attached.tab.segment';
+							self._tab = 'div.ui.bottom.attached.tab.segment.no-border.below-tabs';
 							if (self.Active) {
 								self._menu += '.active';
 								self._tab += '.active';
@@ -2473,7 +2473,7 @@ function main () {
 							return m (self._menu, self._menu_attrs, m ('div', self.Name), m ('div.ui.label.small', '{0}/{1}'.format (self.table.shown, self.table.total)));
 						});},
 						get main_view () {return __get__ (this, function (self) {
-							return m ('div', m ('div.table-container', m (self.table.view)), m ('div.ui.hidden.divider'), m ('div.ui.two.cards', dict ({'style': 'height: 45%;'}), m ('div.ui.card', m ('div.content.small-header', m ('div.header', m ('span', 'Details'), m ('span.ui.mini.right.floated.button', dict ({'onclick': self._copyDetails, 'id': self._copyButtonId}), 'Copy'))), m ('pre.content.code-block', dict ({'id': self._detailsId}), self.table.detailSelected)), m ('div.ui.card', m ('div.content.small-header', m ('div.header', m ('span', 'Copied'), m ('span.ui.mini.right.floated.button', dict ({'onclick': self._clearCopy, 'id': self._clearButtonId}), 'Clear'))), m ('pre.content.code-block', dict ({'id': self._copiedId}), self.copiedDetails))));
+							return m ('div.fill-container.small-padding', m ('div.table-container', m (self.table.view)), m ('div.card-container', m ('div.ui.two.cards.fill-container', m ('div.ui.card', m ('div.content.small-header', m ('div.header', m ('span', 'Details'), m ('span.ui.mini.right.floated.button', dict ({'onclick': self._copyDetails, 'id': self._copyButtonId}), 'Copy'))), m ('pre.content.code-block', dict ({'id': self._detailsId}), self.table.detailSelected)), m ('div.ui.card', m ('div.content.small-header', m ('div.header', m ('span', 'Copied'), m ('span.ui.mini.right.floated.button', dict ({'onclick': self._clearCopy, 'id': self._clearButtonId}), 'Clear'))), m ('pre.content.code-block', dict ({'id': self._copiedId}), self.copiedDetails)))));
 						});}
 					});
 					var Field = __class__ ('Field', [object], {
@@ -3036,6 +3036,7 @@ function main () {
 								var tab = __iterable0__ [__index0__];
 								tab.table.setFilter (self.searcher.search);
 							}
+							return false;
 						});},
 						get searchCurrent () {return __get__ (this, function (self) {
 							var text = jQuery ('#' + self._searchId).val ();
@@ -3067,7 +3068,7 @@ function main () {
 							else {
 								var refresher = m ('button.ui.icon.button', dict ({'onclick': self.refresh}), m ('i.refresh.icon'));
 							}
-							return m ('div', m ('form', dict ({'onsubmit': self.searchAll}), m ('div.ui.borderless.menu', m ('div.right.menu', dict ({'style': 'padding-right: 40%'}), m ('div.item', dict ({'style': 'width: 80%'}), m ('div.ui.transparent.icon.input', m ('input[type=text][placeholder=Search...]', dict ({'id': self._searchId})), m ('i.search.icon'))), m ('div.item', m ('input.ui.primary.button[type=submit][value=Search]')), m ('div.item', refresher)))), m ('div.ui.top.attached.pointing.five.item.menu', menu_items), tab_items);
+							return m ('div', dict ({'style': 'height: 100%;'}), m ('form', dict ({'onsubmit': self.searchAll}), m ('div.ui.borderless.menu', m ('div.right.menu', dict ({'style': 'padding-right: 40%'}), m ('div.item', dict ({'style': 'width: 80%'}), m ('div.ui.transparent.icon.input', m ('input[type=text][placeholder=Search...]', dict ({'id': self._searchId})), m ('i.search.icon'))), m ('div.item', m ('input.ui.primary.button[type=submit][value=Search]')), m ('div.item', refresher)))), m ('div.ui.top.attached.pointing.five.item.menu', menu_items), tab_items);
 						});}
 					});
 					__pragma__ ('<use>' +
